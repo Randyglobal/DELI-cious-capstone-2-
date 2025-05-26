@@ -1,4 +1,26 @@
 package com.pluralsight.model.order.drink.topping;
 
-public class RegularTopping {
+import com.pluralsight.model.order.drink.Topping;
+
+public class RegularTopping extends Topping {
+    private boolean isExtra;
+
+    public RegularTopping(String name, double basePrice, boolean isExtra) {
+        super(name, basePrice);
+        this.isExtra = isExtra;
+    }
+
+    public boolean isExtra() {
+        return isExtra;
+    }
+
+    @Override
+    public String displayDetails() {
+        return "";
+    }
+
+    @Override
+    public double getPrice() {
+        return 0;
+    }
 }

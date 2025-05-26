@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 public class Transaction implements Displayable {
     private static int nextId = 1;
-    private int transactionId = 0;
     private double paidAmount = 0.0;
     private String paymentMethod = "";
     private double cashback = 0.0;
@@ -14,12 +13,16 @@ public class Transaction implements Displayable {
     private String status = "";
 
     public Transaction (int transactionId, double paidAmount, String paymentMethod, double cashback, LocalDateTime transactionTime, String status) {
-        this.transactionId = nextId++;
+        int transactionId1 = nextId++;
         this.paidAmount = paidAmount;
         this.paymentMethod = paymentMethod;
         this.cashback = cashback;
         this.transactionTime = transactionTime;
         this.status = status;
+    }
+
+    public static int getNextId() {
+        return nextId;
     }
 
     public double getPaidAmount() {
