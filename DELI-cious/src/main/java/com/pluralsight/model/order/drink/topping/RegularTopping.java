@@ -3,7 +3,7 @@ package com.pluralsight.model.order.drink.topping;
 import com.pluralsight.model.order.drink.Topping;
 
 public class RegularTopping extends Topping {
-    private boolean isExtra;
+    private boolean isExtra = true;
 
     public RegularTopping(String name, double basePrice, boolean isExtra) {
         super(name, basePrice);
@@ -16,11 +16,11 @@ public class RegularTopping extends Topping {
 
     @Override
     public String displayDetails() {
-        return "";
+        return String.format("%s (Regular%s) - $$%.2f", getName(), isExtra? "Extra" : "", getPrice());
     }
 
     @Override
     public double getPrice() {
-        return 0;
+        return getBasePrice();
     }
 }
