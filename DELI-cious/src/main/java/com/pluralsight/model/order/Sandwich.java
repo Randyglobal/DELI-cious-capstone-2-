@@ -26,7 +26,7 @@ public class Sandwich implements Displayable {
         return "-".repeat(RECEIPT_WIDTH);
     }
 
-    public enum sandwichSize {
+    public enum SandwichSize {
 //        defining enums for sandwichSize
         SIZE_4_INCHES(4, 5.50),
         SIZE_8_INCHES(8, 7.00),
@@ -35,7 +35,7 @@ public class Sandwich implements Displayable {
         private int size = 0;
         private double basePrice = 0.0;
 
-        sandwichSize(int size, double basePrice) {
+        SandwichSize(int size, double basePrice) {
             this.size = size;
             this.basePrice = basePrice;
         }
@@ -98,14 +98,14 @@ public class Sandwich implements Displayable {
         WHITE, WHEAT, RYE, WRAP;
     }
 
-    private final sandwichSize size;
+    private final SandwichSize size;
     private final BreadType bread;
     private boolean isToasted = false;
     private List<Topping> toppingList;
 
 
 //Constructor for sandwich class
-    public Sandwich(sandwichSize size, BreadType bread, boolean isToasted) {
+    public Sandwich(SandwichSize size, BreadType bread, boolean isToasted) {
         this.size = size;
         this.bread = bread;
         this.isToasted = isToasted;
