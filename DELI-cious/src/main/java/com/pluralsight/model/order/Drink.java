@@ -1,11 +1,6 @@
 package com.pluralsight.model.order;
 
-import com.pluralsight.interfaceModel.Displayable;
-import com.pluralsight.model.Order;
-
-import java.time.LocalDateTime;
-
-public class Drink implements Displayable {
+public class Drink implements Priceable {
 
     public enum DrinkSize{
         SMALL(2.00),
@@ -35,14 +30,15 @@ public class Drink implements Displayable {
         return size;
     }
 
-    @Override
-    public String displayDetails() {
-
-        return String.format("%s (%s) - $%.2f", name, size.name(), getPrice());
-    }
 
     @Override
     public double getPrice() {
         return size.getPrice();
+    }
+
+    @Override
+    public String displayDetails() {
+
+        return String.format("%s (%s) - $%.2f", name, size.name(), getPrice());
     }
 }

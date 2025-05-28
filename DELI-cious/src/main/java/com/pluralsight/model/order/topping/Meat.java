@@ -1,4 +1,4 @@
-package com.pluralsight.model.order.drink.topping;
+package com.pluralsight.model.order.topping;
 
 public class Meat extends PremiumTopping{
 

@@ -1,8 +1,8 @@
-package com.pluralsight.model.order.drink;
+package com.pluralsight.model.order.topping;
 
-import com.pluralsight.interfaceModel.Displayable;
+import com.pluralsight.model.order.Priceable;
 
-public abstract class Topping implements Displayable {
+public abstract class Topping implements Priceable {
     private String name = "";
     private double basePrice = 0.0;
 
@@ -14,8 +14,10 @@ public abstract class Topping implements Displayable {
     public String getName() {
         return name;
     }
-
     public double getBasePrice() {
         return basePrice;
     }
+
+    @Override
+    public abstract  String displayDetails();
 }

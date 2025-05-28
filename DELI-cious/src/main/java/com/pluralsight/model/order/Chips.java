@@ -1,11 +1,6 @@
 package com.pluralsight.model.order;
 
-import com.pluralsight.interfaceModel.Displayable;
-import com.pluralsight.model.Order;
-
-import java.time.LocalDateTime;
-
-public class Chip implements Displayable {
+public class Chips implements Priceable {
 
     public enum ChipsSize{
         SMALL(1.50),
@@ -22,7 +17,7 @@ public class Chip implements Displayable {
     private String name;
     private ChipsSize size;
 
-    public Chip(String name, ChipsSize size) {
+    public Chips(String name, ChipsSize size) {
         this.name = name;
         this.size = size;
     }
@@ -35,13 +30,15 @@ public class Chip implements Displayable {
         return size;
     }
 
-    @Override
-    public String displayDetails() {
-        return String.format("%s (%s) - $%.2f", name, size.name(), getPrice());
-    }
 
     @Override
     public double getPrice() {
         return size.getPrice();
+    }
+
+
+    @Override
+    public String displayDetails() {
+        return String.format("%s (%s) - $%.2f", name, size.name(), getPrice());
     }
 }

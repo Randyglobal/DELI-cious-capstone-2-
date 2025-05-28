@@ -1,6 +1,4 @@
-package com.pluralsight.model.order.drink.topping;
-
-import com.pluralsight.model.order.drink.Topping;
+package com.pluralsight.model.order.topping;
 
 public class Cheese extends PremiumTopping {
 

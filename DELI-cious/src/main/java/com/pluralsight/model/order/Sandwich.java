@@ -1,14 +1,13 @@
 package com.pluralsight.model.order;
 
-import com.pluralsight.interfaceModel.Displayable;
-import com.pluralsight.model.order.drink.Topping;
-import com.pluralsight.model.order.drink.topping.Cheese;
-import com.pluralsight.model.order.drink.topping.Meat;
+import com.pluralsight.model.order.topping.Topping;
+import com.pluralsight.model.order.topping.Cheese;
+import com.pluralsight.model.order.topping.Meat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sandwich implements Displayable {
+public class Sandwich implements Priceable {
 //    display receipt width
     private static final int RECEIPT_WIDTH = 40;
     // Helper method to center text for the display
@@ -97,6 +96,10 @@ public class Sandwich implements Displayable {
     public enum BreadType{
         WHITE, WHEAT, RYE, WRAP;
     }
+//    to get price in the orderManager, declare as public
+    public SandwichSize getSize(){
+        return size;
+    }
 
     private final SandwichSize size;
     private final BreadType bread;
@@ -122,13 +125,70 @@ public class Sandwich implements Displayable {
 
     public void addTopping(Topping topping){
 //        Logic to add topping
-        this.addTopping(topping);
+        this.toppingList.add(topping);
     }
     public List<Topping> getToppings(){
 //        return toppingList
 //        defensive copying
         return new ArrayList<>(toppingList);
     }
+
+    public int getMeatCount(){
+        int meatCount = 0;
+        for (Topping topping: toppingList){
+            if (topping instanceof Meat){
+                meatCount++;
+            }
+        }
+        return meatCount;
+    }
+    public int getCheeseCount(){
+        int cheeseCount = 0;
+        for (Topping topping : toppingList){
+            if (topping instanceof Cheese){
+                cheeseCount++;
+            }
+        }
+        return cheeseCount;
+    }
+
+    @Override
+    public double getPrice() {
+        double calculatedPrice = size.getBasePrice();
+        for (Topping topping : toppingList){
+            calculatedPrice += topping.getBasePrice();
+        }
+        return calculatedPrice;
+    }
+
+//    @Override
+//    public double getPrice() {
+//        double calculatedPrice = size.getBasePrice();
+//        int meatCount = getCount();
+//        int cheeseCount = getCount();
+//        for (Topping topping : toppingList){
+//            if (topping instanceof Meat){
+//                meatCount++;
+//                if (meatCount == 1){
+//                    calculatedPrice += size.getMeatPrice();
+//                } else {
+//                    calculatedPrice += size.getExtraMeat();
+//                }
+//            } else if (topping instanceof Cheese) {
+//                cheeseCount ++;
+//                if (cheeseCount == 1){
+//                    calculatedPrice += size.getCheesePrice();
+//                }else {
+//                    calculatedPrice += size.getExtraCheese();
+//                }
+//            }else {
+////                if noner of them are instance
+//                calculatedPrice += topping.getPrice();
+//            }
+//        }
+//        return calculatedPrice;
+//    }
+
 
     @Override
     public String displayDetails() {
@@ -167,31 +227,4 @@ public class Sandwich implements Displayable {
         return details.toString();
     }
 
-    @Override
-    public double getPrice() {
-        double calculatedPrice = size.getBasePrice();
-        int meatCount = 0;
-        int cheeseCount = 0;
-        for (Topping topping : toppingList){
-            if (topping instanceof Meat){
-                meatCount++;
-                if (meatCount == 1){
-                    calculatedPrice += size.getMeatPrice();
-                } else {
-                    calculatedPrice += size.getExtraMeat();
-                }
-            } else if (topping instanceof Cheese) {
-                cheeseCount ++;
-                if (cheeseCount == 1){
-                    calculatedPrice += size.getCheesePrice();
-                }else {
-                    calculatedPrice += size.getExtraCheese();
-                }
-            }else {
-//                if non of them i an instance
-                calculatedPrice += topping.getPrice();
-            }
-        }
-        return calculatedPrice;
-    }
 }
