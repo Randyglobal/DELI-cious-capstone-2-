@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class HomeScreen {
     static Scanner scanner = new Scanner(System.in);
-
     public void display(String message){
         System.out.println(message);
     }

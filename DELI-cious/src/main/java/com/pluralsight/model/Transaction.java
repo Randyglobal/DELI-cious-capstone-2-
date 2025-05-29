@@ -90,7 +90,7 @@ public class Transaction implements Priceable {
     public String displayDetails() {
 //        structure results layout
         StringBuilder details = new StringBuilder();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss"); // Time only for payment detail
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Time only for payment detail
 
         details.append(String.format("  %-25s%14.2f\n", "Amount Tendered:", paidAmount));
         details.append(String.format("  %-25s%14.2f\n", "Cashback:", cashback));

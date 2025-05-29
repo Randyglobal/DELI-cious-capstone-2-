@@ -395,8 +395,8 @@ public class OrderManager {
         double customerTender;
         String paymentMethod;
         int choice;
-
-        while(true){
+        boolean response = true;
+        while(response){
             display("1) - Confirm Order");
             display("2) - Cancel Order");
             choice = scanner.nextInt();
@@ -419,7 +419,8 @@ public class OrderManager {
                             if (checked){
                                 display("------ Payment Successful!! --------");
                                 display(currentOrder.displayDetails());
-
+                                currentOrder.clearItems();
+                                response = false;
 //                                currentOrder = null;
                             }else{
                                 display("------ Payment Failed!! -------");
@@ -433,6 +434,19 @@ public class OrderManager {
                 }
 
             } else if (choice == 2) {
+                if (currentOrder == null){
+                    display("Sorry, no Item has been Added!!!");
+                    return;
+                }
+                display("Are you sure you want to cancel order? (Y(yes)/N(no))");
+                String orderResponse = scanner.nextLine();
+                if (orderResponse.equalsIgnoreCase("y") || orderResponse.equalsIgnoreCase("yes")){
+                    currentOrder.clearItems();
+                    display("Order Cancelled");
+                    response = false;
+                }else {
+                    response = true;
+                }
 
             }
         }

@@ -29,11 +29,13 @@ public class Order implements Priceable {
     private static int nextOrderId = 0;
     private final LocalDate orderDate;
     private  List<Priceable> items;
+    private List<Customer> customer;
     private Transaction transaction;
     public Order() {
         this.orderId = nextOrderId++;
         this.orderDate = LocalDate.now();
         this.items = new ArrayList<>();
+        this.customer = new ArrayList<>();
     }
 
     public int getOrderId() {
@@ -47,7 +49,7 @@ public class Order implements Priceable {
 
     public void addCustomer(Customer customer){
         if (customer != null){
-            this.items.add(customer);
+            this.customer.add(customer);
         }
     }
 
@@ -96,6 +98,9 @@ public class Order implements Priceable {
         details.append(centerText("--- DELI-cious ORDER ---")).append("\n");
         details.append(createSeparator()).append("\n");
         details.append(centerText(String.format("Order ID: %d", orderId))).append("\n");
+        for (Customer customer: customer){
+            details.append("  ").append(customer.displayDetails()).append("\n");
+        }
         details.append(centerText(String.format("Date: %s", orderDate.format(formatter)))).append("\n");
         details.append(createSeparator()).append("\n");
 
