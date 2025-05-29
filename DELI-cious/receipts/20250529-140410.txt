@@ -1,18 +1,17 @@
         --- DELI-cious ORDER ---        
 ----------------------------------------
-              Order ID: 1               
-         Customer Name: Randy Imbia       
+              Customer Name: K            
             Date: 2025-05-29            
 ----------------------------------------
              --- ITEMS ---              
-  Cheddar Jalapeño (SMALL) - $1.50
+  Sour Cream & Onion (SMALL) - $1.50
 ----------------------------------------
 $TOTAL:                             1.50
 ----------------------------------------
         --- PAYMENT DETAILS ---         
-  Amount Tendered:                   2.00
-  Cashback:                          0.50
-  Payment Method:                    card
+  Amount Tendered:                   1.50
+  Cashback:                          0.00
+  Payment Method:                    cash
   Status:                            PAID
   Time:                        2025-05-29
 

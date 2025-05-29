@@ -1,6 +1,4 @@
-package com.pluralsight.app.screen;
-
-import com.pluralsight.data.OrderManager;
+package com.pluralsight.userinterface;
 
 import java.util.Scanner;
 

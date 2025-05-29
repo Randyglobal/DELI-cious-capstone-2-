@@ -161,35 +161,6 @@ public class Sandwich implements Priceable {
         return calculatedPrice;
     }
 
-//    @Override
-//    public double getPrice() {
-//        double calculatedPrice = size.getBasePrice();
-//        int meatCount = getCount();
-//        int cheeseCount = getCount();
-//        for (Topping topping : toppingList){
-//            if (topping instanceof Meat){
-//                meatCount++;
-//                if (meatCount == 1){
-//                    calculatedPrice += size.getMeatPrice();
-//                } else {
-//                    calculatedPrice += size.getExtraMeat();
-//                }
-//            } else if (topping instanceof Cheese) {
-//                cheeseCount ++;
-//                if (cheeseCount == 1){
-//                    calculatedPrice += size.getCheesePrice();
-//                }else {
-//                    calculatedPrice += size.getExtraCheese();
-//                }
-//            }else {
-////                if noner of them are instance
-//                calculatedPrice += topping.getPrice();
-//            }
-//        }
-//        return calculatedPrice;
-//    }
-
-
     @Override
     public String displayDetails() {
         StringBuilder details = new StringBuilder();

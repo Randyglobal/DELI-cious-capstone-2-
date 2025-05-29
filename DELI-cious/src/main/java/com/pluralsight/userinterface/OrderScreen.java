@@ -1,6 +1,5 @@
-package com.pluralsight.app.screen;
+package com.pluralsight.userinterface;
 
-import com.pluralsight.data.OrderManager;
 import com.pluralsight.model.order.Order;
 
 import java.util.Scanner;
@@ -14,7 +13,7 @@ public class OrderScreen {
     public static void displayOrderScreen(){
         currentOrder = new Order();
         display("\n -----  Starting New Order  ------");
-        OrderManager.addCustomer();
+        UserInterface.addCustomer();
         int choice;
         while (true){
             display("== Order Menu ==");
@@ -28,16 +27,16 @@ public class OrderScreen {
 
             switch (choice){
                 case 1:
-                    OrderManager.addSandwich();
+                    UserInterface.displayOrderMenu();
                     break;
                 case 2:
-                    OrderManager.addDrink();
+                    UserInterface.promptDrink();
                     break;
                 case 3:
-                    OrderManager.addChips();
+                    UserInterface.promptChips();
                     break;
                 case 4:
-                    OrderManager.checkout();
+                    UserInterface.checkout();
                     choice = 0;
                     break;
                 case 0:

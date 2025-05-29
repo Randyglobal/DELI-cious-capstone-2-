@@ -1,26 +1,18 @@
-package com.pluralsight.data;
+package com.pluralsight.userinterface;
 
+import com.pluralsight.data.FileManager;
 import com.pluralsight.model.Transaction;
 import com.pluralsight.model.order.*;
 import com.pluralsight.model.order.topping.Cheese;
 import com.pluralsight.model.order.topping.Meat;
 import com.pluralsight.model.order.topping.RegularTopping;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class OrderManager {
-//    Write and read in to the file or database
+public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
     private static Order currentOrder = new Order();
-    private static DateTimeFormatter FILE_NAME = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 //    constants that should be included in the Sandwich
     private static  String[] BREADTYPE = {"WHITE", "WHEAT", "RYE", "WRAP"};
     private static String[] MEAT_OPTION = {"Steak", "Ham", "Salami", "Roasted Beef", "Chicken", "Bacon"};
@@ -40,23 +32,23 @@ public class OrderManager {
         Customer customer = new Customer(name);
         currentOrder.addCustomer(customer);
     }
-    public static void addSandwich(){
+    public static void displayOrderMenu(){
         display("\n ----- Make your Sandwich-------");
 //        initializing Sandwich
-        Sandwich sandwich = new Sandwich(selectedSandwichSize(), selectedBreadTpe(), selectedToastedBread());
+        Sandwich sandwich = new Sandwich(displaySandwichSize(), displayBreadSize(), selectedToastedBread());
 
 //        get meat topping
         addMeatTopping(sandwich);
 //        get cheese topping
-        addCheeseTopping(sandwich);
+        promptCheese(sandwich);
 //        add Regular topping
-        addRegularTopping(sandwich);
+        promptRegular(sandwich);
 //        add sauce
-        addSauce(sandwich);
+        promptSauce(sandwich);
 //        adding Sandwich to order
         currentOrder.addSandwich(sandwich);
 }
-    private static Sandwich.SandwichSize selectedSandwichSize(){
+    private static Sandwich.SandwichSize displaySandwichSize(){
         boolean result = true;
         int choice;
         int isSignature;
@@ -85,6 +77,7 @@ public class OrderManager {
                             } else if (choice == 2) {
                                 return Sandwich.SandwichSize.SIZE_8_INCHES;
                             } if (choice == 0) {
+                                display(" ");
                                 return null;
                             } else {
                                 display("Invalid Choice");
@@ -117,7 +110,7 @@ public class OrderManager {
                 }
         return null;
     }
-    private static Sandwich.BreadType selectedBreadTpe(){
+    private static Sandwich.BreadType displayBreadSize(){
         int choice;
         while (true){
             display("Select Bread Type: ");
@@ -132,6 +125,7 @@ public class OrderManager {
             if (choice > 0 && choice <= BREADTYPE.length){
                 return Sandwich.BreadType.valueOf(BREADTYPE[choice - 1]);
             } else if (choice == 0) {
+                display(" ");
                 return null;
             }else {
                 display("Invalid Choice");
@@ -156,7 +150,7 @@ public class OrderManager {
     private static void addMeatTopping(Sandwich sandwich){
         int meatTopping;
         while(true){
-            display("Added some meat bro: ");
+            display("---- Add Topping: -------");
             for (int i = 0; i < MEAT_OPTION.length; i++) {
                 display( (i + 1) + ") " + MEAT_OPTION[i]);
             }
@@ -171,6 +165,7 @@ public class OrderManager {
                     Meat meat = getMeat(sandwich, meatTopping);
                     sandwich.addTopping(meat);
                     display("Meat Added!!");
+                    display(" ");
                 } else if (meatTopping == 0) {
                     break;
                 }else {
@@ -201,10 +196,10 @@ public class OrderManager {
         return meat;
     }
 
-    private static void addCheeseTopping(Sandwich sandwich){
+    private static void promptCheese(Sandwich sandwich){
         int cheeseTopping;
         while (true){
-            display("Add some cheese bro:  ");
+            display("------- Add Some Cheese: -------");
             for (int i = 0; i < CHEESE_OPTION.length; i++) {
                 display((i + 1) + ")" + CHEESE_OPTION[i]);
             }
@@ -218,6 +213,7 @@ public class OrderManager {
                     Cheese cheese = getCheese(sandwich, cheeseTopping);
                     sandwich.addTopping(cheese);
                     display("Cheese Added!");
+                    display(" ");
                 } else if (cheeseTopping == 0) {
                     break;
                 }
@@ -245,10 +241,10 @@ public class OrderManager {
         return cheese;
     }
 
-    private static void addRegularTopping(Sandwich sandwich) {
+    private static void promptRegular(Sandwich sandwich) {
         int regularTopping;
         while (true){
-            display(" Add Other Regular's for free");
+            display("------- Add Other Regular's for free --------");
                 for (int i = 0; i < REGULAR_TOPPING.length; i++) {
                     display((1 + i) + ")" + REGULAR_TOPPING[i]);
                 }
@@ -262,6 +258,7 @@ public class OrderManager {
                     RegularTopping regular = new RegularTopping(regularName, 0.0);
                     sandwich.addTopping(regular);
                     display("Regular Topping Added!");
+                    display(" ");
                 } else if (regularTopping == 0) {
                    break;
                 }
@@ -271,10 +268,10 @@ public class OrderManager {
             }
     }
     }
-    private static void addSauce(Sandwich sandwich){
+    private static void promptSauce(Sandwich sandwich){
         int sauceTopping;
         while (true){
-            display("Add Some Sauce: ");
+            display("---- Add Some Sauce: -----");
             for (int i = 0; i < SAUCES_OPTION.length; i++) {
                  display((i + 1) + ")" + SAUCES_OPTION[i]);
             }
@@ -290,6 +287,7 @@ public class OrderManager {
                     Sauce sauce = new Sauce(sauceName, 0.0);
                     sandwich.addTopping(sauce);
                     display("Sauce Added!");
+                    display(" ");
                 } else if (sauceTopping == 0) {
                     break;
                 }
@@ -301,15 +299,15 @@ public class OrderManager {
         }
     }
 
-    public static void addDrink(){
+    public static void promptDrink(){
         display("--- Add Drink ----");
         int choice;
-        Drink.DrinkSize selectedDrink = selectDrinkSize();
+        Drink.DrinkSize selectedDrink = displayDrink();
         if (selectedDrink == null){
             return;
         }
         while(true){
-            display("Select your drink: ");
+            display("------ Select your drink: -----");
             for (int i = 0; i < DRINK_OPTION.length; i++) {
                 display((1 + i) + ")" + DRINK_OPTION[i]);
             }
@@ -326,6 +324,7 @@ public class OrderManager {
                     display("Drink Added");
                     currentOrder.addDrink(drink);
                 } else if (choice == 0) {
+                    display(" ");
                     break;
                 }
             }catch (InputMismatchException e){
@@ -334,10 +333,10 @@ public class OrderManager {
             }
         }
     }
-    private static Drink.DrinkSize selectDrinkSize(){
+    private static Drink.DrinkSize displayDrink(){
         int choice;
         while (true){
-            display("Select Drink Size: ");
+            display("------ Select Drink Size: --------");
             display("1) - SMALL($2.00)");
             display("2) - MEDIUM($2.50)");
             display("3) - LARGE($3.00)");
@@ -363,7 +362,7 @@ public class OrderManager {
         }
     }
 
-    public static void addChips(){
+    public static void promptChips(){
         display("--- Add Chips ----");
         int choice;
         Chips.ChipsSize selectedChips = selectChipsSize();
@@ -388,6 +387,7 @@ public class OrderManager {
                     currentOrder.addChip(chips);
                     display("Chips Added");
                 } else if (choice == 0) {
+                    display(" ");
                     break;
                 }
             }catch (InputMismatchException e){
@@ -454,14 +454,14 @@ public class OrderManager {
                         scanner.nextLine();
                         if (customerTender < currentOrder.getPrice()){
                             display("Please, Amount entered is not correct, Enter Correct amount");
-                            scanner.nextLine();
+                            continue;
                         }else {
                             Transaction transaction = new Transaction(paymentMethod);
                             boolean checked = transaction.processPayment(currentOrder, customerTender);
                             if (checked){
                                 display("------ Payment Successful!! --------");
                                 display(currentOrder.displayDetails());
-                                writeToFile(currentOrder);
+                                FileManager.writeToFile(currentOrder);
 //                                currentOrder.clearItems();
                                 response = false;
 //                                currentOrder = null;
@@ -491,47 +491,6 @@ public class OrderManager {
                     response = true;
                 }
 
-            }
-        }
-    }
-
-    public static void writeToFile(Order order){
-     if (order == null || order.getOrderDate() == null){
-         display("Server Error");
-         return;
-     }
-     LocalDateTime orderDateTime = order.getOrderDate();
-     String filename = "receipts" + File.separator + orderDateTime.format(FILE_NAME) + ".txt";
-     try {
-         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-         writer.write(order.displayDetails());
-         display("Receipt Saved!!");
-         writer.close();
-     }catch (IOException e){
-         display("Invalid entry");
-     }
-    }
-
-    public static void viewTransactions(){
-        int choice;
-        boolean response = true;
-        while (response) {
-            display("1) - Specific transaction");
-            display("2) - All Transactions");
-            display("Enter Command: ");
-
-            try {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-                if (choice == 1){
-                    display("Please Enter Name: ");
-                    String name = scanner.nextLine();
-//                    read through the files and check if the names are equal, the display receipt
-                } else if (choice == 2) {
-//                    display all the receipt in each file
-                }
-            }catch (InputMismatchException e){
-                display("Invalid entry");
             }
         }
     }

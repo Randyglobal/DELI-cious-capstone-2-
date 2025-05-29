@@ -1,34 +1,36 @@
         --- DELI-cious ORDER ---        
 ----------------------------------------
-              Order ID: 1               
-            Customer Name: King           
+            Customer Name: RImbs          
             Date: 2025-05-29            
 ----------------------------------------
              --- ITEMS ---              
               --- SANDWICH ---            
 ----------------------------------------
-             8" WHITE Bread             
+              4" RYE Bread              
              Toasted: true              
 ----------------------------------------
-Base Price (Bread):                7.00
+Base Price (Bread):                5.50
             --- TOPPINGS ---            
-  Steak (Premium) - $2.00       
-  Ham (PremiumExtra) - $1.00    
-  American (Premium) - $1.50    
+  Steak (Premium) - $1.00       
+  Ham (PremiumExtra) - $0.50    
+  American (Premium) - $0.75    
   Lettuce $0.00                 
+  Cucumbers $0.00               
   Mayo - $0.00                  
+  Ketchup - $0.00               
 ----------------------------------------
-Sandwich Total:                   11.50
+Sandwich Total:                    7.75
 ----------------------------------------
 
   Coca-Cola (MEDIUM) - $2.50
+  Salt & Vinegar (LARGE) - $1.50
 ----------------------------------------
-$TOTAL:                            14.00
+$TOTAL:                            11.75
 ----------------------------------------
         --- PAYMENT DETAILS ---         
-  Amount Tendered:                  14.00
-  Cashback:                          0.00
-  Payment Method:                    cash
+  Amount Tendered:                  12.00
+  Cashback:                          0.25
+  Payment Method:                    Cash
   Status:                            PAID
   Time:                        2025-05-29
 
