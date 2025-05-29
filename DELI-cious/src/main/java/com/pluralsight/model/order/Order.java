@@ -3,6 +3,7 @@ package com.pluralsight.model.order;
 import com.pluralsight.model.Transaction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +26,15 @@ public class Order implements Priceable {
     }
 //    Receipt display ends
 
-    private final int orderId;
-    private static int nextOrderId = 0;
-    private final LocalDate orderDate;
+    private int orderId = 1;
+//    private static int nextOrderId = 0;
+    private final LocalDateTime orderDate;
     private  List<Priceable> items;
     private List<Customer> customer;
     private Transaction transaction;
     public Order() {
-        this.orderId = nextOrderId++;
-        this.orderDate = LocalDate.now();
+        this.orderId = orderId++;
+        this.orderDate = LocalDateTime.now();
         this.items = new ArrayList<>();
         this.customer = new ArrayList<>();
     }
@@ -42,7 +43,7 @@ public class Order implements Priceable {
         return orderId;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
 
         return orderDate;
     }
@@ -97,7 +98,7 @@ public class Order implements Priceable {
 
         details.append(centerText("--- DELI-cious ORDER ---")).append("\n");
         details.append(createSeparator()).append("\n");
-        details.append(centerText(String.format("Order ID: %d", orderId))).append("\n");
+        details.append(centerText(String.format("Order ID: %d", getOrderId()))).append("\n");
         for (Customer customer: customer){
             details.append("  ").append(customer.displayDetails()).append("\n");
         }

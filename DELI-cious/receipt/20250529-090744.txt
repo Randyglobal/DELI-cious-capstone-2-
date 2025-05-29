@@ -1,0 +1,21 @@
+        --- DELI-cious ORDER ---        
+----------------------------------------
+              Order ID: 1               
+         Customer Name: Randy Imbia       
+            Date: 2025-05-29            
+----------------------------------------
+             --- ITEMS ---              
+  Cheddar Jalapeño (SMALL) - $1.50
+----------------------------------------
+$TOTAL:                             1.50
+----------------------------------------
+        --- PAYMENT DETAILS ---         
+  Amount Tendered:                   2.00
+  Cashback:                          0.50
+  Payment Method:                    card
+  Status:                            PAID
+  Time:                        2025-05-29
+
+----------------------------------------
+       THANK YOU FOR YOUR ORDER!        
+----------------------------------------

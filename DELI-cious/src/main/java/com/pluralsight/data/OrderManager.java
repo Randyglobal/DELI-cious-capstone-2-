@@ -6,6 +6,13 @@ import com.pluralsight.model.order.topping.Cheese;
 import com.pluralsight.model.order.topping.Meat;
 import com.pluralsight.model.order.topping.RegularTopping;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,6 +20,7 @@ public class OrderManager {
 //    Write and read in to the file or database
     private static Scanner scanner = new Scanner(System.in);
     private static Order currentOrder = new Order();
+    private static DateTimeFormatter FILE_NAME = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 //    constants that should be included in the Sandwich
     private static  String[] BREADTYPE = {"WHITE", "WHEAT", "RYE", "WRAP"};
     private static String[] MEAT_OPTION = {"Steak", "Ham", "Salami", "Roasted Beef", "Chicken", "Bacon"};
@@ -419,7 +427,8 @@ public class OrderManager {
                             if (checked){
                                 display("------ Payment Successful!! --------");
                                 display(currentOrder.displayDetails());
-                                currentOrder.clearItems();
+                                writeToFile(currentOrder);
+//                                currentOrder.clearItems();
                                 response = false;
 //                                currentOrder = null;
                             }else{
@@ -450,5 +459,22 @@ public class OrderManager {
 
             }
         }
+    }
+
+    public static void writeToFile(Order order){
+     if (order == null || order.getOrderDate() == null){
+         display("Server Error");
+         return;
+     }
+     LocalDateTime orderDateTime = order.getOrderDate();
+     String filename = "receipt" + File.separator + orderDateTime.format(FILE_NAME) + ".txt";
+     try {
+         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+         writer.write(order.displayDetails());
+         display("Receipt Saved!!");
+         writer.close();
+     }catch (IOException e){
+         display("Invalid entry");
+     }
     }
 }
