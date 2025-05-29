@@ -59,28 +59,62 @@ public class OrderManager {
     private static Sandwich.SandwichSize selectedSandwichSize(){
         boolean result = true;
         int choice;
-        while (result) {
-            display("Selected Sandwich Size: ");
-            display("1) - 4 Inches");
-            display("2) - 8 Inches");
-            display("3) - 12 Inches");
-            display("0) - Skip");
-            display("Enter Command: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+        int isSignature;
+        display("1) - Signature Sandwich");
+        display("2) - Customize Sandwich");
+                isSignature = scanner.nextInt();
+                scanner.nextLine();
+                if (isSignature == 1){
+                    display("---- Make your choice ----- ");
+                    display("1) - Mediterranean Delight");
+                    display("2) - Carolina Classic");
+                    int choiceSelected = scanner.nextInt();
+                    scanner.nextLine();
+                    if (choiceSelected == 1 || choiceSelected == 2){
+                        while (result) {
+                            display("Selected Sandwich Size: ");
+                            display("1) - 4 Inches");
+                            display("2) - 8 Inches");
+                            display("0) - Skip");
+                            display("Enter Command: ");
+                            choice = scanner.nextInt();
+                            scanner.nextLine();
 
-            if (choice == 1) {
-                return Sandwich.SandwichSize.SIZE_4_INCHES;
-            } else if (choice == 2) {
-                return Sandwich.SandwichSize.SIZE_8_INCHES;
-            } else if (choice == 3) {
-                return Sandwich.SandwichSize.SIZE_12_INCHES;
-            } else if (choice == 0) {
-                return null;
-            } else {
-                display("Invalid Choice");
-            }
-        }
+                            if (choice == 1) {
+                                return Sandwich.SandwichSize.SIZE_4_INCHES;
+                            } else if (choice == 2) {
+                                return Sandwich.SandwichSize.SIZE_8_INCHES;
+                            } if (choice == 0) {
+                                return null;
+                            } else {
+                                display("Invalid Choice");
+                            }
+                        }
+                    }
+                } else if (isSignature == 2) {
+                    while (result) {
+                        display("Selected Sandwich Size: ");
+                        display("1) - 4 Inches");
+                        display("2) - 8 Inches");
+                        display("3) - 12 Inches");
+                        display("0) - Skip");
+                        display("Enter Command: ");
+                        choice = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (choice == 1) {
+                            return Sandwich.SandwichSize.SIZE_4_INCHES;
+                        } else if (choice == 2) {
+                            return Sandwich.SandwichSize.SIZE_8_INCHES;
+                        } else if (choice == 3) {
+                            return Sandwich.SandwichSize.SIZE_12_INCHES;
+                        } else if (choice == 0) {
+                            return null;
+                        } else {
+                            display("Invalid Choice");
+                        }
+                    }
+                }
         return null;
     }
     private static Sandwich.BreadType selectedBreadTpe(){
@@ -416,7 +450,7 @@ public class OrderManager {
                 if (paymentMethod.equalsIgnoreCase("Cash") || paymentMethod.equalsIgnoreCase("Card")){
                     display("Enter Amount: ");
                     try{
-                        customerTender = scanner.nextInt();
+                        customerTender = scanner.nextDouble();
                         scanner.nextLine();
                         if (customerTender < currentOrder.getPrice()){
                             display("Please, Amount entered is not correct, Enter Correct amount");
@@ -467,7 +501,7 @@ public class OrderManager {
          return;
      }
      LocalDateTime orderDateTime = order.getOrderDate();
-     String filename = "receipt" + File.separator + orderDateTime.format(FILE_NAME) + ".txt";
+     String filename = "receipts" + File.separator + orderDateTime.format(FILE_NAME) + ".txt";
      try {
          BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
          writer.write(order.displayDetails());
@@ -476,5 +510,29 @@ public class OrderManager {
      }catch (IOException e){
          display("Invalid entry");
      }
+    }
+
+    public static void viewTransactions(){
+        int choice;
+        boolean response = true;
+        while (response) {
+            display("1) - Specific transaction");
+            display("2) - All Transactions");
+            display("Enter Command: ");
+
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+                if (choice == 1){
+                    display("Please Enter Name: ");
+                    String name = scanner.nextLine();
+//                    read through the files and check if the names are equal, the display receipt
+                } else if (choice == 2) {
+//                    display all the receipt in each file
+                }
+            }catch (InputMismatchException e){
+                display("Invalid entry");
+            }
+        }
     }
 }

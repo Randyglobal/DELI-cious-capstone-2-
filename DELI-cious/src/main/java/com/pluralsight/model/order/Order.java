@@ -98,7 +98,7 @@ public class Order implements Priceable {
 
         details.append(centerText("--- DELI-cious ORDER ---")).append("\n");
         details.append(createSeparator()).append("\n");
-        details.append(centerText(String.format("Order ID: %d", getOrderId()))).append("\n");
+//        details.append(centerText(String.format("Order ID: %d", getOrderId()))).append("\n");
         for (Customer customer: customer){
             details.append("  ").append(customer.displayDetails()).append("\n");
         }

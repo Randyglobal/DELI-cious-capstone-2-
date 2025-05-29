@@ -1,0 +1,41 @@
+        --- DELI-cious ORDER ---        
+----------------------------------------
+              Order ID: 1               
+          Customer Name: Mickey M         
+            Date: 2025-05-29            
+----------------------------------------
+             --- ITEMS ---              
+              --- SANDWICH ---            
+----------------------------------------
+            12" WHEAT Bread             
+             Toasted: true              
+----------------------------------------
+Base Price (Bread):                8.50
+            --- TOPPINGS ---            
+  Steak (Premium) - $3.00       
+  Chicken (PremiumExtra) - $1.50
+  Provolone (Premium) - $2.25   
+  Cheddar (PremiumExtra) - $0.90
+  Jalapenos $0.00               
+  Peppers $0.00                 
+  Pickles $0.00                 
+----------------------------------------
+Sandwich Total:                   16.15
+----------------------------------------
+
+  Lemonade (LARGE) - $3.00
+  Lemonade (LARGE) - $3.00
+  Cheddar Jalapeño (MEDIUM) - $1.50
+----------------------------------------
+$TOTAL:                            23.65
+----------------------------------------
+        --- PAYMENT DETAILS ---         
+  Amount Tendered:                  24.00
+  Cashback:                          0.35
+  Payment Method:                    card
+  Status:                            PAID
+  Time:                        2025-05-29
+
+----------------------------------------
+       THANK YOU FOR YOUR ORDER!        
+----------------------------------------

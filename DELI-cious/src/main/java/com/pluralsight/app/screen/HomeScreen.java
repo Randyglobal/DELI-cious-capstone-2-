@@ -1,5 +1,7 @@
 package com.pluralsight.app.screen;
 
+import com.pluralsight.data.OrderManager;
+
 import java.util.Scanner;
 
 public class HomeScreen {
@@ -12,8 +14,8 @@ public class HomeScreen {
         boolean response = true;
         while (response){
             display("\n ------Welcome to DELI-cious Sandwich------");
-            display("1) New Order");
-            display("2) Exit");
+            display("1) - Make an Order");
+            display("2) - Exit");
             display("Enter Command:");
             choice = scanner.nextInt();
             scanner.nextLine();

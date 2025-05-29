@@ -1,0 +1,37 @@
+        --- DELI-cious ORDER ---        
+----------------------------------------
+              Order ID: 1               
+            Customer Name: King           
+            Date: 2025-05-29            
+----------------------------------------
+             --- ITEMS ---              
+              --- SANDWICH ---            
+----------------------------------------
+             8" WHITE Bread             
+             Toasted: true              
+----------------------------------------
+Base Price (Bread):                7.00
+            --- TOPPINGS ---            
+  Steak (Premium) - $2.00       
+  Ham (PremiumExtra) - $1.00    
+  American (Premium) - $1.50    
+  Lettuce $0.00                 
+  Mayo - $0.00                  
+----------------------------------------
+Sandwich Total:                   11.50
+----------------------------------------
+
+  Coca-Cola (MEDIUM) - $2.50
+----------------------------------------
+$TOTAL:                            14.00
+----------------------------------------
+        --- PAYMENT DETAILS ---         
+  Amount Tendered:                  14.00
+  Cashback:                          0.00
+  Payment Method:                    cash
+  Status:                            PAID
+  Time:                        2025-05-29
+
+----------------------------------------
+       THANK YOU FOR YOUR ORDER!        
+----------------------------------------
