@@ -26,7 +26,7 @@ public class Order implements Priceable {
 //    Receipt display ends
 
     private final int orderId;
-    private static int nextOrderId = 1;
+    private static int nextOrderId = 0;
     private final LocalDate orderDate;
     private  List<Priceable> items;
     private Transaction transaction;
@@ -43,6 +43,12 @@ public class Order implements Priceable {
     public LocalDate getOrderDate() {
 
         return orderDate;
+    }
+
+    public void addCustomer(Customer customer){
+        if (customer != null){
+            this.items.add(customer);
+        }
     }
 
     public void addSandwich(Sandwich sandwich) {
@@ -87,7 +93,7 @@ public class Order implements Priceable {
         StringBuilder details = new StringBuilder();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        details.append(centerText("--- DELI-CIOUS ORDER ---")).append("\n");
+        details.append(centerText("--- DELI-cious ORDER ---")).append("\n");
         details.append(createSeparator()).append("\n");
         details.append(centerText(String.format("Order ID: %d", orderId))).append("\n");
         details.append(centerText(String.format("Date: %s", orderDate.format(formatter)))).append("\n");
@@ -99,14 +105,12 @@ public class Order implements Priceable {
         } else {
             details.append(centerText("--- ITEMS ---")).append("\n");
             for (Priceable item : items) {
-                // Assuming each item's displayDetails() returns a single, well-formatted line
-                // Indent items for better readability within the order receipt
                 details.append("  ").append(item.displayDetails()).append("\n");
             }
             details.append(createSeparator()).append("\n");
         }
 
-        details.append(String.format("%-25s%14.2f\n", "TOTAL:", getPrice()));
+        details.append(String.format("$%-25s%14.2f\n", "TOTAL:", getPrice()));
         details.append(createSeparator()).append("\n");
 
         // Display transaction details if a transaction exists

@@ -1,5 +1,6 @@
 package com.pluralsight.data;
 
+import com.pluralsight.model.Transaction;
 import com.pluralsight.model.order.*;
 import com.pluralsight.model.order.topping.Cheese;
 import com.pluralsight.model.order.topping.Meat;
@@ -15,15 +16,21 @@ public class OrderManager {
 //    constants that should be included in the Sandwich
     private static  String[] BREADTYPE = {"WHITE", "WHEAT", "RYE", "WRAP"};
     private static String[] MEAT_OPTION = {"Steak", "Ham", "Salami", "Roasted Beef", "Chicken", "Bacon"};
-    private static String[] CHEESE_OPTION = {"American", "Provolone", "Cheddar", "Swiss", "Lays Classic", "Mozzarla"};
+    private static String[] CHEESE_OPTION = {"American", "Provolone", "Cheddar", "Swiss", "Lays Classic", "Mozzarella"};
     private static String[]  REGULAR_TOPPING = {"Lettuce", "Peppers", "Onion", "Tomatoes", "Jalapenos", "Cucumbers", "Pickles", "Guacamole", "Mushrooms"};
     private static String[] SAUCES_OPTION = {"Mayo", "Mustard", "Ketchup", "Ranch", "Thousand Islands", "Vinaigrette"};
-    private static String[] SIDES = {"Au Jus", "Sauce"};
     private static String[] CHIPS_OPTIONS = {"Salt & Vinegar", "Barbecue", "Sour Cream & Onion", "Cheddar Jalapeño", "Classic Sea Salt"};
     private static String[] DRINK_OPTION = {"Coca-Cola", "Pepsi", "Sprite", "Orange Juice", "Water", "Apple Juice", "Lemonade", "Ice Tea"};
 
     public static  void display(String message){
         System.out.println(message);
+    }
+
+    public static  void addCustomer(){
+        display("Please enter Customer name");
+        String name = scanner.nextLine();
+        Customer customer = new Customer(name);
+        currentOrder.addCustomer(customer);
     }
     public static void addSandwich(){
         display("\n ----- Make your Sandwich-------");
@@ -38,6 +45,8 @@ public class OrderManager {
         addRegularTopping(sandwich);
 //        add sauce
         addSauce(sandwich);
+//        adding Sandwich to order
+        currentOrder.addSandwich(sandwich);
 }
     private static Sandwich.SandwichSize selectedSandwichSize(){
         boolean result = true;
@@ -273,6 +282,7 @@ public class OrderManager {
                     String drinkName = DRINK_OPTION[choice - 1];
                     Drink drink = new Drink(drinkName, selectedDrink);
                     display("Drink Added");
+                    currentOrder.addDrink(drink);
                 } else if (choice == 0) {
                     break;
                 }
@@ -319,7 +329,7 @@ public class OrderManager {
             return;
         }
         while(true){
-            display("Select your drink: ");
+            display("Select your chips: ");
             for (int i = 0; i < CHIPS_OPTIONS.length; i++) {
                 display((1 + i) + ")" + CHIPS_OPTIONS[i]);
             }
@@ -333,7 +343,8 @@ public class OrderManager {
                 if (choice > 0 && choice <= CHIPS_OPTIONS.length){
                     String chipsName = CHIPS_OPTIONS[choice - 1];
                     Chips chips = new Chips(chipsName, selectedChips);
-                    display("Drink Added");
+                    currentOrder.addChip(chips);
+                    display("Chips Added");
                 } else if (choice == 0) {
                     break;
                 }
@@ -346,7 +357,7 @@ public class OrderManager {
     private static Chips.ChipsSize selectChipsSize(){
         int choice;
         while (true){
-            display("Select Drink Size: ");
+            display("Select Chips Size: ");
             display("1) - SMALL($1.50)");
             display("2) - MEDIUM($1.50)");
             display("3) - LARGE($1.50)");
@@ -368,6 +379,61 @@ public class OrderManager {
 
             }catch (InputMismatchException e){
                 display("Invalid Input");
+            }
+        }
+    }
+
+    public static void checkout(){
+//        Save from the file manager
+        if (currentOrder == null || currentOrder.getPrice() == 0.0){
+            display("Sorry, no Item has been Added!!!");
+            return;
+        }
+        display(currentOrder.displayDetails());
+        display(String.format("Total: $%.2f", currentOrder.getPrice()));
+
+        double customerTender;
+        String paymentMethod;
+        int choice;
+
+        while(true){
+            display("1) - Confirm Order");
+            display("2) - Cancel Order");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 1){
+                display("Enter Payment Method(CASH / CARD)");
+                paymentMethod = scanner.nextLine().trim();
+                if (paymentMethod.equalsIgnoreCase("Cash") || paymentMethod.equalsIgnoreCase("Card")){
+                    display("Enter Amount: ");
+                    try{
+                        customerTender = scanner.nextInt();
+                        scanner.nextLine();
+                        if (customerTender < currentOrder.getPrice()){
+                            display("Please, Amount entered is not correct, Enter Correct amount");
+                            scanner.nextLine();
+                        }else {
+                            Transaction transaction = new Transaction(paymentMethod);
+                            boolean checked = transaction.processPayment(currentOrder, customerTender);
+                            if (checked){
+                                display("------ Payment Successful!! --------");
+                                display(currentOrder.displayDetails());
+
+//                                currentOrder = null;
+                            }else{
+                                display("------ Payment Failed!! -------");
+                            }
+                        }
+                    }catch (InputMismatchException e){
+                        display("Invalid Entry");
+                    }
+                }else {
+                    display("Invalid Entry");
+                }
+
+            } else if (choice == 2) {
+
             }
         }
     }

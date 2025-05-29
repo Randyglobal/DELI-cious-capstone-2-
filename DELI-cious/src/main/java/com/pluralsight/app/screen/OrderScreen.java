@@ -13,7 +13,8 @@ public class OrderScreen {
     }
     public static void displayOrderScreen(){
         currentOrder = new Order();
-        display("\n -----  Starting New Order (OrderId: " + currentOrder.getOrderId() + ") ------");
+        display("\n -----  Starting New Order  ------");
+        OrderManager.addCustomer();
         int choice;
         while (true){
             display("== Order Menu ==");
@@ -36,7 +37,7 @@ public class OrderScreen {
                     OrderManager.addChips();
                     break;
                 case 4:
-//                    OrderManager.checkout();
+                    OrderManager.checkout();
                     choice = 0;
                     break;
                 case 0:

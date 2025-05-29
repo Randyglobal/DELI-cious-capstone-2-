@@ -13,6 +13,6 @@ public class RegularTopping extends Topping {
 
     @Override
     public String displayDetails() {
-        return String.format("%s (Regular%s) - $$%.2f", getName(), getPrice());
+        return String.format("%s $%.2f", getName(), getPrice());
     }
 }
