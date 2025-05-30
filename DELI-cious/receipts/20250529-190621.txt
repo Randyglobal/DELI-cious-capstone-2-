@@ -1,0 +1,20 @@
+        --- DELI-cious ORDER ---        
+----------------------------------------
+         Customer Name: Randy Imbia       
+            Date: 2025-05-29            
+----------------------------------------
+             --- ITEMS ---              
+  Coca-Cola (MEDIUM) - $2.50
+----------------------------------------
+$TOTAL:                             2.50
+----------------------------------------
+        --- PAYMENT DETAILS ---         
+  Amount Tendered:                   3.00
+  Cashback:                          0.50
+  Payment Method:                    card
+  Status:                            PAID
+  Time:                        2025-05-29
+
+----------------------------------------
+       THANK YOU FOR YOUR ORDER!        
+----------------------------------------

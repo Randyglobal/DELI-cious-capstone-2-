@@ -1,0 +1,39 @@
+        --- DELI-cious ORDER ---        
+----------------------------------------
+            Customer Name: Randy          
+            Date: 2025-05-29            
+----------------------------------------
+             --- ITEMS ---              
+              --- SANDWICH ---            
+----------------------------------------
+             4" WHITE Bread             
+             Toasted: true              
+----------------------------------------
+Base Price (Bread):                5.50
+            --- TOPPINGS ---            
+  Ham (Premium) - $1.00         
+  Steak (PremiumExtra) - $0.50  
+  American (Premium) - $0.75    
+  Lettuce $0.00                 
+  Peppers $0.00                 
+  Mayo - $0.00                  
+----------------------------------------
+Sandwich Total:                    7.75
+----------------------------------------
+
+  Coca-Cola (MEDIUM) - $2.50
+  Pepsi (MEDIUM) - $2.50
+  Salt & Vinegar (MEDIUM) - $1.50
+----------------------------------------
+$TOTAL:                            14.25
+----------------------------------------
+        --- PAYMENT DETAILS ---         
+  Amount Tendered:                  15.00
+  Cashback:                          0.75
+  Payment Method:                    cash
+  Status:                            PAID
+  Time:                        2025-05-29
+
+----------------------------------------
+       THANK YOU FOR YOUR ORDER!        
+----------------------------------------
