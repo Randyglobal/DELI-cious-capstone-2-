@@ -55,5 +55,15 @@ The class diagram is generated using Mermaid syntax. To view it:
 * **Payment Processing:** Integrate with payment gateways.
 
 ## 🤝 Contributing
+## Project Board
+![ProjectBoard](projectboard.png) 
+## Class Diagram
+![ClassDiagram](DELI-cious.drawio.png)
 
-This project is currently in its initial design phase. Contributions and feedback are welcome! Please feel free to open issues or suggest improvements to the design.
+## App
+![ClassDiagram](app.png)
+
+## Interesting Piece of Code
+This code shows how i coud just write my entire Receipt display method in the file.
+
+![ClassDiagram](interstingpeiceofcode.png)
